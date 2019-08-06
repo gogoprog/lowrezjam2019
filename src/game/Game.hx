@@ -32,6 +32,7 @@ class Game extends Application {
         Factory.init(game);
         AudioManager.init(game);
         game.stage.disableVisibilityChange = true;
+        engine.addSystem(new ParallaxSystem(), 9);
 
         var menuState = createState("menu");
         createUiState("main", ".default");
@@ -72,7 +73,11 @@ class Game extends Application {
             changeUiState("hud");
             changeState("ingame");
             changeIngameState("idling");
-            var e = Factory.createBackground();
+            var e = Factory.createParallax("back2", 0);
+            engine.addEntity(e);
+            var e = Factory.createParallax("back1", 0.5);
+            engine.addEntity(e);
+            var e = Factory.createParallax("back0", 1);
             engine.addEntity(e);
         });
     }
