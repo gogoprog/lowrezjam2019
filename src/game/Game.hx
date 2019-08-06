@@ -72,6 +72,8 @@ class Game extends Application {
             changeUiState("hud");
             changeState("ingame");
             changeIngameState("idling");
+            var e = Factory.createBackground();
+            engine.addEntity(e);
         });
     }
 

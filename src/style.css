@@ -3,12 +3,21 @@
   /* src: url("../data/gui/kfs.ttf"); */
 }
 
+canvas {
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: -o-crisp-edges;
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+
 .root {
   position: absolute;
   left: 10px;
   top: 10px;
-  width: 480px;
-  height: 800px;
+  width: 64px;
+  height: 64px;
   font-family: 'Main', monospace;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -16,6 +25,8 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  border:1px solid black;
+  zoom:4;
 }
 
 .root>div {
