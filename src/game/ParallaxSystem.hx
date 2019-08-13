@@ -12,7 +12,6 @@ class ParallaxNode extends Node<ParallaxNode> {
 
 class ParallaxSystem extends ListIteratingSystem<ParallaxNode> {
     private var engine:Engine;
-    private var camera:phaser.Camera;
 
     public function new() {
         super(ParallaxNode, updateNode, onNodeAdded, onNodeRemoved);
@@ -21,26 +20,21 @@ class ParallaxSystem extends ListIteratingSystem<ParallaxNode> {
     public override function addToEngine(engine:Engine) {
         super.addToEngine(engine);
         this.engine = engine;
-        camera = whiplash.Lib.phaserGame.camera;
     }
 
     public override function removeFromEngine(engine:Engine) {
         super.removeFromEngine(engine);
     }
 
-    public override function update(dt) {
+    public override function update(dt:Float) {
+        Game.instance.session.worldX += dt * 10;
         super.update(dt);
-
-        camera.x += dt * 100;
-
     }
 
     private function updateNode(node:ParallaxNode, dt:Float):Void {
         var sprite = node.sprite;
         var position = node.transform.position;
-        sprite.tilePosition.x = - camera.x * node.parallax.factor;
-        position.x = camera.x;
-        position.y = camera.y;
+        sprite.tilePosition.x = - Game.instance.session.worldX * node.parallax.factor;
     }
 
     private function onNodeAdded(node:ParallaxNode) {
