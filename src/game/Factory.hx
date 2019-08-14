@@ -29,5 +29,25 @@ class Factory {
         s.tint = 0xffffff;
         return e;
     }
+
+    static public function createShip() {
+        var e = new Entity();
+        e.add(new Transform());
+        e.add(new Sprite("rocket"));
+        var s = e.get(Sprite);
+        s.anchor.set(0.5, 0.5);
+        e.add(new Ship());
+        return e;
+    }
+    
+    static public function createLaser() {
+        var e = new Entity();
+        e.add(new Transform());
+        e.add(new Sprite("laser"));
+        var s = e.get(Sprite);
+        s.anchor.set(0.5, 0.5);
+        e.add(new Laser());
+        return e;
+    }
 }
 

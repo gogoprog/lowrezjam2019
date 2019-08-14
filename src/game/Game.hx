@@ -33,6 +33,8 @@ class Game extends Application {
         AudioManager.init(game);
         game.stage.disableVisibilityChange = true;
         engine.addSystem(new ParallaxSystem(), 9);
+        engine.addSystem(new ShipSystem(), 9);
+        engine.addSystem(new LaserSystem(), 9);
 
         var menuState = createState("menu");
         createUiState("main", ".default");
@@ -83,6 +85,10 @@ class Game extends Application {
             var e = Factory.createEnemy();
             engine.addEntity(e);
             e.get(Transform).position.set(40, 30);
+
+            var e = Factory.createShip();
+            engine.addEntity(e);
+
         });
     }
 
