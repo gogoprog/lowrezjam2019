@@ -79,6 +79,10 @@ class Game extends Application {
             engine.addEntity(e);
             var e = Factory.createParallax("back0", 1);
             engine.addEntity(e);
+
+            var e = Factory.createEnemy();
+            engine.addEntity(e);
+            e.get(Transform).position.set(40, 30);
         });
     }
 
