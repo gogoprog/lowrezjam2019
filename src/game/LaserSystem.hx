@@ -4,6 +4,8 @@ import ash.tools.ListIteratingSystem;
 import ash.core.*;
 import whiplash.phaser.*;
 
+import game.EnemySystem;
+
 class LaserNode extends Node<LaserNode> {
     public var transform:Transform;
     public var shake:Laser;
@@ -20,6 +22,7 @@ class LaserSystem extends ListIteratingSystem<LaserNode> {
     public override function addToEngine(engine:Engine) {
         super.addToEngine(engine);
         this.engine = engine;
+        enemyList = engine.getNodeList(EnemyNode);
     }
 
     public override function removeFromEngine(engine:Engine) {
@@ -33,6 +36,20 @@ class LaserSystem extends ListIteratingSystem<LaserNode> {
 
         if(p.x > 80) {
             engine.removeEntity(node.entity);
+            return;
+        }
+
+        for(e in enemyList) {
+            var ep = e.transform.position;
+            var w = 18;
+            var h = 8;
+
+            if(p.x > ep.x - w && p.x < ep.x + w) {
+                if(p.y > ep.y - h && p.y < ep.y + h) {
+                    engine.removeEntity(node.entity);
+                    return;
+                }
+            }
         }
     }
 

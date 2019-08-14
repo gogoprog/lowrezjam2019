@@ -6,7 +6,7 @@ import whiplash.phaser.*;
 
 class EnemyNode extends Node<EnemyNode> {
     public var transform:Transform;
-    public var shake:Enemy;
+    public var enemy:Enemy;
 }
 
 class EnemySystem extends ListIteratingSystem<EnemyNode> {
