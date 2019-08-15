@@ -6,6 +6,7 @@ import whiplash.math.*;
 
 class Factory {
     static public function init(game:phaser.Game) {
+        game.load.bitmapFont('font', '../data/fonts/font.png', '../data/fonts/font.fnt');
     }
 
     static public function createParallax(texture, factor) {
@@ -48,6 +49,18 @@ class Factory {
         var s = e.get(Sprite);
         s.anchor.set(0.5, 0.5);
         e.add(new Laser());
+        return e;
+    }
+
+    static public function createBitmapText(text) {
+        var e = new Entity();
+        e.add(new Transform());
+        var t = new Text(text);
+        t.font = "Main";
+        t.fontSize = 5;
+        t.stroke = '#ffffff';
+        t.fill = 'white';
+        e.add(t);
         return e;
     }
 }

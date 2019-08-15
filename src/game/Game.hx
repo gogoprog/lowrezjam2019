@@ -87,6 +87,8 @@ class Game extends Application {
             var e = Factory.createShip();
             engine.addEntity(e);
 
+            var e = Factory.createBitmapText("welcome");
+            engine.addEntity(e);
         });
     }
 
