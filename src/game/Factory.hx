@@ -25,7 +25,7 @@ class Factory {
         var s = e.get(Sprite);
         s.animations.add("idle", ["frame12", "frame2", "frame7", "frame2"]);
         s.animations.play("idle", 5, true);
-        s.anchor.set(0.5, 0.35);
+        s.anchor.set(0.5, 0.33);
         e.add(new Enemy());
         return e;
     }

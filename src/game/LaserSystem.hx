@@ -41,8 +41,8 @@ class LaserSystem extends ListIteratingSystem<LaserNode> {
 
         for(e in enemyList) {
             var ep = e.transform.position;
-            var w = 18;
-            var h = 8;
+            var w = 15;
+            var h = 12;
 
             if(p.x > ep.x - w && p.x < ep.x + w) {
                 if(p.y > ep.y - h && p.y < ep.y + h) {

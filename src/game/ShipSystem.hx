@@ -6,7 +6,7 @@ import whiplash.phaser.*;
 
 class ShipNode extends Node<ShipNode> {
     public var transform:Transform;
-    public var shake:Ship;
+    public var ship:Ship;
 }
 
 class ShipSystem extends ListIteratingSystem<ShipNode> {
@@ -28,16 +28,23 @@ class ShipSystem extends ListIteratingSystem<ShipNode> {
     private function updateNode(node:ShipNode, dt:Float):Void {
         var m = whiplash.Input.mouseCoordinates;
         var mb = whiplash.Input.mouseButtons;
+        var ship = node.ship;
 
         node.transform.position.x = 5;
         node.transform.position.y = m.y / 4;
 
-        if(mb[0]) {
-            var e = Factory.createLaser();
-            var p = e.get(Transform).position;
-            p.x = node.transform.position.x;
-            p.y = node.transform.position.y;
-            engine.addEntity(e);
+
+        ship.timeSinceFire += dt;
+
+        if(ship.timeSinceFire > ship.fireInterval) {
+            if(mb[0]) {
+                var e = Factory.createLaser();
+                var p = e.get(Transform).position;
+                p.x = node.transform.position.x;
+                p.y = node.transform.position.y;
+                engine.addEntity(e);
+                ship.timeSinceFire = 0;
+            }
         }
     }
 
