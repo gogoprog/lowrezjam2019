@@ -21,7 +21,7 @@ class Factory {
         var e = new Entity();
         e.add(new Transform());
         e.add(new Sprite("enemy"));
-        e.get(Transform).scale.set(0.6, 0.6);
+        e.get(Transform).scale.set(0.3, 0.3);
         var s = e.get(Sprite);
         s.animations.add("idle", ["frame12", "frame2", "frame7", "frame2"]);
         s.animations.play("idle", 5, true);

@@ -35,6 +35,7 @@ class Game extends Application {
         engine.addSystem(new ParallaxSystem(), 9);
         engine.addSystem(new ShipSystem(), 9);
         engine.addSystem(new LaserSystem(), 9);
+        engine.addSystem(new EnemySystem(), 9);
 
         var menuState = createState("menu");
         createUiState("main", ".default");
@@ -82,9 +83,6 @@ class Game extends Application {
             var e = Factory.createParallax("back0", 1);
             engine.addEntity(e);
 
-            var e = Factory.createEnemy();
-            engine.addEntity(e);
-            e.get(Transform).position.set(40, 30);
 
             var e = Factory.createShip();
             engine.addEntity(e);
