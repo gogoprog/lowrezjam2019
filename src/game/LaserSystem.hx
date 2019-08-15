@@ -32,7 +32,7 @@ class LaserSystem extends ListIteratingSystem<LaserNode> {
     private function updateNode(node:LaserNode, dt:Float):Void {
         var t = node.transform;
         var p = t.position;
-        p.x += dt * 30;
+        p.x += dt * 50;
 
         if(p.x > 80) {
             engine.removeEntity(node.entity);
