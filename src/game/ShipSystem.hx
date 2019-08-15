@@ -33,7 +33,6 @@ class ShipSystem extends ListIteratingSystem<ShipNode> {
         node.transform.position.x = 5;
         node.transform.position.y = m.y / 4;
 
-
         ship.timeSinceFire += dt;
 
         if(ship.timeSinceFire > ship.fireInterval) {

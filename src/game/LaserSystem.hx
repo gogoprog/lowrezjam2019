@@ -40,16 +40,23 @@ class LaserSystem extends ListIteratingSystem<LaserNode> {
         }
 
         for(e in enemyList) {
-            var ep = e.transform.position;
-            var s = e.transform.scale.x;
-            var w = 15 * s / 0.6;
-            var h = 12 * s / 0.6;
+            if(e.enemy.hp > 0) {
+                var ep = e.transform.position;
+                var s = e.transform.scale.x;
+                var w = 15 * s / 0.6;
+                var h = 12 * s / 0.6;
 
-            if(p.x > ep.x - w && p.x < ep.x + w) {
-                if(p.y > ep.y - h && p.y < ep.y + h) {
-                    engine.removeEntity(node.entity);
-                    whiplash.AudioManager.playSound("pain");
-                    return;
+                if(p.x > ep.x - w && p.x < ep.x + w) {
+                    if(p.y > ep.y - h && p.y < ep.y + h) {
+                        engine.removeEntity(node.entity);
+                        e.enemy.hp -= 50;
+
+                        if(e.enemy.hp > 0) {
+                            whiplash.AudioManager.playSound("pain");
+                        }
+
+                        return;
+                    }
                 }
             }
         }

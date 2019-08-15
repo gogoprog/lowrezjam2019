@@ -8,6 +8,7 @@ import whiplash.math.Point;
 class EnemyNode extends Node<EnemyNode> {
     public var transform:Transform;
     public var enemy:Enemy;
+    public var sprite:Sprite;
 }
 
 typedef Path = Array<Point>;
@@ -46,6 +47,24 @@ class EnemySystem extends ListIteratingSystem<EnemyNode> {
 
     private function updateNode(node:EnemyNode, dt:Float):Void {
         var enemy = node.enemy;
+
+        if(enemy.hp <= 0) {
+            if(!enemy.dying) {
+                node.sprite.animations.play("death", 6, false);
+                whiplash.AudioManager.playSound("death");
+                enemy.dying = true;
+            }
+
+            var p = node.transform.position;
+            enemy.vy += dt * 100;
+            p.y += enemy.vy *dt;
+
+            if(p.y > 100) {
+                engine.removeEntity(node.entity);
+            }
+
+            return;
+        }
 
         enemy.time += dt;
         enemy.pathStepTime += dt;

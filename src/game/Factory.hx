@@ -24,6 +24,7 @@ class Factory {
         e.get(Transform).scale.set(0.3, 0.3);
         var s = e.get(Sprite);
         s.animations.add("idle", ["frame12", "frame2", "frame7", "frame2"]);
+        s.animations.add("death", [for(i in 35...42) "frame" + i]);
         s.animations.play("idle", 5, true);
         s.anchor.set(0.5, 0.33);
         e.add(new Enemy());
@@ -39,7 +40,7 @@ class Factory {
         e.add(new Ship());
         return e;
     }
-    
+
     static public function createLaser() {
         var e = new Entity();
         e.add(new Transform());
