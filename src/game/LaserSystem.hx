@@ -48,6 +48,7 @@ class LaserSystem extends ListIteratingSystem<LaserNode> {
             if(p.x > ep.x - w && p.x < ep.x + w) {
                 if(p.y > ep.y - h && p.y < ep.y + h) {
                     engine.removeEntity(node.entity);
+                    whiplash.AudioManager.playSound("pain");
                     return;
                 }
             }

@@ -44,6 +44,7 @@ class ShipSystem extends ListIteratingSystem<ShipNode> {
                 p.y = node.transform.position.y;
                 engine.addEntity(e);
                 ship.timeSinceFire = 0;
+                whiplash.AudioManager.playSound("laser");
             }
         }
     }
