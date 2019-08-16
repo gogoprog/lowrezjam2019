@@ -35,39 +35,46 @@ class Game extends Application {
         engine.addSystem(new ParallaxSystem(), 9);
         engine.addSystem(new ShipSystem(), 9);
         engine.addSystem(new LaserSystem(), 9);
-        engine.addSystem(new EnemySystem(), 9);
 
         var menuState = createState("menu");
+        menuState.addInstance(new MenuSystem());
         createUiState("main", ".default");
         createUiState("lobby", ".lobby");
         createUiState("hud", ".hud");
 
+        var introState = createState("intro");
+        introState.addInstance(new IntroSystem());
+
         var ingameState = createState("ingame");
+        ingameState.addInstance(new EnemySystem());
 
         createIngameState("idling");
 
         gotoMainMenu();
+
+        var e = Factory.createParallax("back2", 0);
+        engine.addEntity(e);
+        var e = Factory.createParallax("back1", 0.5);
+        engine.addEntity(e);
+        var e = Factory.createParallax("back0", 1);
+        engine.addEntity(e);
     }
 
     override function onGuiLoaded() {
         super.onGuiLoaded();
-        new JQuery(".play").on("click", function() {
-            changeUiState("hud");
-            changeState("ingame");
-            changeIngameState("idling");
-        });
-        new JQuery(".abort").on("click", function() {
-            changeUiState("main");
-            changeState("menu");
-        });
     }
 
     public function gotoMainMenu() {
         engine.updateComplete.addOnce(function() {
             changeState("menu");
             changeUiState("main");
-            //debug:
-            startGame();
+        });
+    }
+
+    public function startIntro() {
+        engine.updateComplete.addOnce(function() {
+            changeUiState("hud");
+            changeState("intro");
         });
     }
 
@@ -76,19 +83,6 @@ class Game extends Application {
             changeUiState("hud");
             changeState("ingame");
             changeIngameState("idling");
-            var e = Factory.createParallax("back2", 0);
-            engine.addEntity(e);
-            var e = Factory.createParallax("back1", 0.5);
-            engine.addEntity(e);
-            var e = Factory.createParallax("back0", 1);
-            engine.addEntity(e);
-
-
-            var e = Factory.createShip();
-            engine.addEntity(e);
-
-            var e = Factory.createBitmapText("welcome");
-            engine.addEntity(e);
         });
     }
 

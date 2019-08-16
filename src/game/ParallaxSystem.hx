@@ -11,6 +11,7 @@ class ParallaxNode extends Node<ParallaxNode> {
 }
 
 class ParallaxSystem extends ListIteratingSystem<ParallaxNode> {
+    public var speed:Float = 0;
     private var engine:Engine;
 
     public function new() {
@@ -27,7 +28,7 @@ class ParallaxSystem extends ListIteratingSystem<ParallaxNode> {
     }
 
     public override function update(dt:Float) {
-        Game.instance.session.worldX += dt * 10;
+        Game.instance.session.worldX += dt * speed;
         super.update(dt);
     }
 
