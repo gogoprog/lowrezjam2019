@@ -12,10 +12,16 @@ canvas {
   -ms-interpolation-mode: nearest-neighbor;
 }
 
+
+body {
+  margin:0;
+  padding:0;
+}
+
 .root {
   position: absolute;
-  left: 10px;
-  top: 10px;
+  left: 0;
+  top: 0;
   width: 64px;
   height: 64px;
   font-family: 'Main', monospace;
@@ -25,7 +31,6 @@ canvas {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  border:1px solid black;
   zoom:4;
 }
 

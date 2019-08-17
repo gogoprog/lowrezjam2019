@@ -6,7 +6,6 @@ import whiplash.math.*;
 
 class Factory {
     static public function init(game:phaser.Game) {
-        game.load.bitmapFont('font', '../data/fonts/font.png', '../data/fonts/font.fnt');
     }
 
     static public function createParallax(texture, factor) {

@@ -7,4 +7,6 @@ packed-*
 /build
 /report
 .DS_Store
+/retail
+/retail.zip
 
