@@ -12,10 +12,11 @@ class IntroSystem extends ash.core.System {
 
     var index:Int;
     var messages = [
-                       "Hi",
-                       "Nice evening?",
-                       "Oh-oh!",
-                       "Enemies ahead!",
+                       "Report in!",
+                       "Reporting in.",
+                       "Area clear...",
+                       "Oh noes!",
+                       "Monsters ahead!",
                        "Kill them all!"
                    ];
 
@@ -29,11 +30,12 @@ class IntroSystem extends ash.core.System {
         engine.addEntity(e);
         this.engine = engine;
         totalTime = 0;
-        time = 1;
+        time = 0;
         index = 0;
         text = Factory.createBitmapText("");
         engine.addEntity(text);
         text.get(Transform).position.set(6, 50);
+        whiplash.AudioManager.playSound("engine");
     }
 
     public override function removeFromEngine(engine:Engine) {
@@ -52,12 +54,18 @@ class IntroSystem extends ash.core.System {
             time -= dt;
 
             if(time < 0) {
-                time = 3;
+                time = 2;
 
                 if(index >= messages.length) {
                     Game.instance.startGame();
                 } else {
                     text.get(Text).text = messages[index];
+                    whiplash.AudioManager.playSound("beep");
+
+                    if(index == 3) {
+                        whiplash.AudioManager.playSound("growl");
+                    }
+
                     index++;
                 }
             }
