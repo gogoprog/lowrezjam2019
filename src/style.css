@@ -31,7 +31,8 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  zoom:4;
+  transform:scale(4);
+  transform-origin:0 0;
 }
 
 .root>div {

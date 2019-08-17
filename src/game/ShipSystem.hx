@@ -31,7 +31,7 @@ class ShipSystem extends ListIteratingSystem<ShipNode> {
         var ship = node.ship;
 
         node.transform.position.x = 5;
-        node.transform.position.y = m.y / 4;
+        node.transform.position.y = m.y;
 
         ship.timeSinceFire += dt;
 
