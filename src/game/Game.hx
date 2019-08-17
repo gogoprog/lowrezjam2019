@@ -35,6 +35,7 @@ class Game extends Application {
         engine.addSystem(new ParallaxSystem(), 9);
         engine.addSystem(new ShipSystem(), 9);
         engine.addSystem(new LaserSystem(), 9);
+        engine.addSystem(new BlinkSystem(), 9);
 
         var menuState = createState("menu");
         menuState.addInstance(new MenuSystem());

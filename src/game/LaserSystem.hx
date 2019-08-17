@@ -55,6 +55,10 @@ class LaserSystem extends ListIteratingSystem<LaserNode> {
                             whiplash.AudioManager.playSound("pain");
                         }
 
+                        if(!e.entity.has(Blink)) {
+                            e.entity.add(new Blink());
+                        }
+
                         return;
                     }
                 }
