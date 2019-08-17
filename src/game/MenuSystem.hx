@@ -35,6 +35,7 @@ class MenuSystem extends ash.core.System {
 
         if(mb[0]) {
             Game.instance.startIntro();
+            mb[0] = false;
         }
     }
 }

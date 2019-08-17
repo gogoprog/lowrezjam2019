@@ -16,11 +16,29 @@ typedef Path = Array<Point>;
 class EnemySystem extends ListIteratingSystem<EnemyNode> {
     private var engine:Engine;
     private var time:Float = 0;
+    private var index:Int = 0;
 
     private var paths:Array<Path> = [
                                         [ new Point(80, 32), new Point(32, 32), new Point(32, 0), new Point(32, 80) ],
-                                        [ new Point(80, 0), new Point(32, 32), new Point(32, 80) ]
+                                        [ new Point(80, 0), new Point(32, 32), new Point(32, 80) ],
+                                        [ new Point(80, 64), new Point(32, 32), new Point(32, -20) ]
                                     ];
+
+    private var timeline:Dynamic = [
+                                       [0, 100, 0.3],
+                                       [0, 100, 0.3],
+                                       [0, 100, 0.3],
+                                       null,
+                                       [1, 100, 0.3],
+                                       [1, 100, 0.3],
+                                       [1, 100, 0.3],
+                                       null,
+                                       [2, 100, 0.3],
+                                       [2, 100, 0.3],
+                                       [2, 100, 0.3],
+                                       null,
+                                       [1, 1000, 0.6],
+                                   ];
 
     public function new() {
         super(EnemyNode, updateNode, onNodeAdded, onNodeRemoved);
@@ -40,8 +58,21 @@ class EnemySystem extends ListIteratingSystem<EnemyNode> {
         time += dt;
 
         if(time > 1) {
-            var e = Factory.createEnemy();
-            engine.addEntity(e);
+            if(index < timeline.length) {
+                var event = timeline[index];
+
+                if(event != null) {
+                    var e = Factory.createEnemy();
+                    var en = e.get(Enemy);
+                    en.pathIndex = event[0];
+                    en.hp = event[1];
+                    var s = event[2];
+                    e.get(Transform).scale.set(s, s);
+                    engine.addEntity(e);
+                }
+            }
+
+            index++;
             time -= 1;
         }
     }
@@ -96,7 +127,6 @@ class EnemySystem extends ListIteratingSystem<EnemyNode> {
     private function onNodeAdded(node:EnemyNode) {
         var enemy = node.enemy;
         enemy.time = 0;
-        enemy.pathIndex = 0;
         enemy.pathStepTime = 0;
         enemy.pathStepIndex = 0;
         updateNode(node, 0);

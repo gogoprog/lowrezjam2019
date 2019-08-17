@@ -44,14 +44,25 @@ class IntroSystem extends ash.core.System {
     }
 
     public override function update(dt:Float) {
+        var mb = whiplash.Input.mouseButtons;
         var ps = engine.getSystem(ParallaxSystem);
         var max = 50;
 
         if(ps.speed < max) {
             ps.speed += dt * 20;
+
+            if(mb[0]) {
+                ps.speed = max;
+                mb[0] = false;
+            }
         } else {
             ps.speed = max;
             time -= dt;
+
+            if(mb[0]) {
+                time = -1;
+                mb[0] = false;
+            }
 
             if(time < 0) {
                 time = 2;
