@@ -18,7 +18,8 @@ class EnemySystem extends ListIteratingSystem<EnemyNode> {
     private var time:Float = 0;
 
     private var paths:Array<Path> = [
-                                        [ new Point(80, 32), new Point(32, 32), new Point(32, 0) ]
+                                        [ new Point(80, 32), new Point(32, 32), new Point(32, 0), new Point(32, 80) ],
+                                        [ new Point(80, 0), new Point(32, 32), new Point(32, 80) ]
                                     ];
 
     public function new() {
@@ -75,6 +76,7 @@ class EnemySystem extends ListIteratingSystem<EnemyNode> {
         var b = path[enemy.pathStepIndex + 1];
 
         if(b == null) {
+            engine.removeEntity(node.entity);
             return;
         } else {
             var delta = b - a;

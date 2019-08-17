@@ -52,7 +52,7 @@ class Factory {
         return e;
     }
 
-    static public function createBitmapText(text) {
+    static public function createText(text) {
         var e = new Entity();
         e.add(new Transform());
         var t = new Text(text);

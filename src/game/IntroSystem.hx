@@ -32,7 +32,7 @@ class IntroSystem extends ash.core.System {
         totalTime = 0;
         time = 0;
         index = 0;
-        text = Factory.createBitmapText("");
+        text = Factory.createText("");
         engine.addEntity(text);
         text.get(Transform).position.set(6, 50);
         whiplash.AudioManager.playSound("engine");
