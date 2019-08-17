@@ -50,6 +50,9 @@ class Game extends Application {
 
         createIngameState("idling");
 
+        var gameOverState = createState("gameover");
+        gameOverState.addInstance(new GameOverSystem());
+
         gotoMainMenu();
 
         var e = Factory.createParallax("back2", 0);
@@ -83,6 +86,14 @@ class Game extends Application {
             changeUiState("hud");
             changeState("ingame");
             changeIngameState("idling");
+            session.miss = 0;
+        });
+    }
+
+    public function gameOver() {
+        engine.updateComplete.addOnce(function() {
+            changeUiState("hud");
+            changeState("gameover");
         });
     }
 

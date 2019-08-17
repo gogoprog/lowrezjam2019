@@ -22,7 +22,7 @@ class EnemySystem extends ListIteratingSystem<EnemyNode> {
                                         [ new Point(80, 32), new Point(32, 32), new Point(32, 0), new Point(32, 80) ],
                                         [ new Point(80, 0), new Point(32, 32), new Point(32, 80) ],
                                         [ new Point(80, 64), new Point(32, 32), new Point(32, -20) ],
-                                        [ new Point(80, 64), new Point(32, 32), new Point(50, 32), new Point(32, 20), new Point(32, 42), new Point(32, 20), new Point(32, 42), new Point(64, 100) ]
+                                        [ new Point(80, 64), new Point(40, 32), new Point(50, 32), new Point(42, 20), new Point(52, 42), new Point(42, 20), new Point(32, 42), new Point(64, 100) ]
                                     ];
 
     private var timeline:Dynamic = [
@@ -43,7 +43,17 @@ class EnemySystem extends ListIteratingSystem<EnemyNode> {
                                        null,
                                        null,
                                        null,
+                                       null,
+                                       null,
                                        [3, 1500, 0.6],
+                                       null,
+                                       null,
+                                       null,
+                                       null,
+                                       null,
+                                       null,
+                                       null,
+                                       null,
                                    ];
 
     public function new() {
@@ -76,6 +86,8 @@ class EnemySystem extends ListIteratingSystem<EnemyNode> {
                     e.get(Transform).scale.set(s, s);
                     engine.addEntity(e);
                 }
+            } else {
+                Game.instance.gameOver();
             }
 
             index++;
@@ -113,6 +125,7 @@ class EnemySystem extends ListIteratingSystem<EnemyNode> {
         var b = path[enemy.pathStepIndex + 1];
 
         if(b == null) {
+            Game.instance.session.miss++;
             engine.removeEntity(node.entity);
             return;
         } else {

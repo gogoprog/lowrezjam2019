@@ -34,6 +34,7 @@ class Factory {
 
     static public function createShip() {
         var e = new Entity();
+        e.name = "ship";
         e.add(new Transform());
         e.add(new Sprite("rocket"));
         var s = e.get(Sprite);
