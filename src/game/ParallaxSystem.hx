@@ -36,6 +36,10 @@ class ParallaxSystem extends ListIteratingSystem<ParallaxNode> {
         var sprite = node.sprite;
         var position = node.transform.position;
         sprite.tilePosition.x = - Game.instance.session.worldX * node.parallax.factor;
+
+        while(sprite.tilePosition.x > 96) {
+            sprite.tilePosition.x -= 96;
+        }
     }
 
     private function onNodeAdded(node:ParallaxNode) {
