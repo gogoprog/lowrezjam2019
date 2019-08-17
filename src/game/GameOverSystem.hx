@@ -32,7 +32,12 @@ class GameOverSystem extends ash.core.System {
         } else {
             title.get(Text).text = "Failed.";
             title.get(Text).fill = "red";
-            text.get(Text).text = miss + " misses";
+
+            if(miss > 1) {
+                text.get(Text).text = miss + " misses";
+            } else {
+                text.get(Text).text = miss + " miss";
+            }
         }
 
         time = 0;

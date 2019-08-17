@@ -21,7 +21,7 @@ class EnemySystem extends ListIteratingSystem<EnemyNode> {
     private var paths:Array<Path> = [
                                         [ new Point(80, 32), new Point(32, 32), new Point(32, 0), new Point(32, 80) ],
                                         [ new Point(80, 0), new Point(32, 32), new Point(32, 80) ],
-                                        [ new Point(80, 64), new Point(32, 32), new Point(32, -20) ],
+                                        [ new Point(80, 64), new Point(32, 32), new Point(42, 32), new Point(32, -20) ],
                                         [ new Point(80, 64), new Point(40, 32), new Point(50, 32), new Point(42, 20), new Point(52, 42), new Point(42, 20), new Point(32, 42), new Point(64, 100) ]
                                     ];
 
@@ -44,15 +44,17 @@ class EnemySystem extends ListIteratingSystem<EnemyNode> {
                                        null,
                                        null,
                                        null,
+                                       [2, 200, 0.3],
+                                       [1, 200, 0.3],
+                                       [2, 200, 0.3],
+                                       [1, 200, 0.3],
+                                       [2, 200, 0.3],
+                                       [1, 200, 0.3],
+                                       [2, 200, 0.3],
                                        null,
-                                       [3, 1500, 0.6],
                                        null,
                                        null,
-                                       null,
-                                       null,
-                                       null,
-                                       null,
-                                       null,
+                                       [3, 2000, 0.7],
                                        null,
                                    ];
 
@@ -63,6 +65,7 @@ class EnemySystem extends ListIteratingSystem<EnemyNode> {
     public override function addToEngine(engine:Engine) {
         super.addToEngine(engine);
         this.engine = engine;
+        index = 0;
     }
 
     public override function removeFromEngine(engine:Engine) {
@@ -87,7 +90,9 @@ class EnemySystem extends ListIteratingSystem<EnemyNode> {
                     engine.addEntity(e);
                 }
             } else {
-                Game.instance.gameOver();
+                if(nodeList.empty) {
+                    Game.instance.gameOver();
+                }
             }
 
             index++;
