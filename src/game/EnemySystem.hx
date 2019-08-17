@@ -21,23 +21,29 @@ class EnemySystem extends ListIteratingSystem<EnemyNode> {
     private var paths:Array<Path> = [
                                         [ new Point(80, 32), new Point(32, 32), new Point(32, 0), new Point(32, 80) ],
                                         [ new Point(80, 0), new Point(32, 32), new Point(32, 80) ],
-                                        [ new Point(80, 64), new Point(32, 32), new Point(32, -20) ]
+                                        [ new Point(80, 64), new Point(32, 32), new Point(32, -20) ],
+                                        [ new Point(80, 64), new Point(32, 32), new Point(50, 32), new Point(32, 20), new Point(32, 42), new Point(32, 20), new Point(32, 42), new Point(64, 100) ]
                                     ];
 
     private var timeline:Dynamic = [
-                                       [0, 100, 0.3],
-                                       [0, 100, 0.3],
-                                       [0, 100, 0.3],
+                                       [0, 250, 0.3],
+                                       [0, 250, 0.3],
+                                       [0, 250, 0.3],
                                        null,
-                                       [1, 100, 0.3],
-                                       [1, 100, 0.3],
-                                       [1, 100, 0.3],
+                                       [1, 250, 0.3],
+                                       [1, 250, 0.3],
+                                       [1, 250, 0.3],
                                        null,
-                                       [2, 100, 0.3],
-                                       [2, 100, 0.3],
-                                       [2, 100, 0.3],
+                                       [2, 200, 0.3],
+                                       [2, 200, 0.3],
+                                       [2, 200, 0.3],
                                        null,
-                                       [1, 1000, 0.6],
+                                       [3, 1500, 0.6],
+                                       null,
+                                       null,
+                                       null,
+                                       null,
+                                       [3, 1500, 0.6],
                                    ];
 
     public function new() {
